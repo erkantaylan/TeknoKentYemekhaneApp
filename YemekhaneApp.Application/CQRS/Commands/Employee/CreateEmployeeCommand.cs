@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using YemekhaneApp.Application.Interfaces;
 
-using MealRecordEntity = YemekhaneApp.Domain.Entities.MealRecord;
 using EmployeeEntity = YemekhaneApp.Domain.Entities.Employee;
 
 namespace YemekhaneApp.Application.CQRS.Commands.Employee
