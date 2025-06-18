@@ -28,8 +28,4 @@
     <ProjectReference Include="..\..\..\YemekhaneApp.Persistence\YemekhaneApp.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

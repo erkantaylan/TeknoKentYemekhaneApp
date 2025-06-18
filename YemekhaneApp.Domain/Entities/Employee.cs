@@ -15,7 +15,7 @@ namespace YemekhaneApp.Domain.Entities
         public string PhoneNumber { get; set; }
         public bool IsActive { get; set; } = true; // Indicates if the employee is currently active
 
-        public int TotalMealCount { get; set; };
+        public int TotalMealCount { get; set; }
         public ICollection<MealRecord> MealRecords { get; set; }
     }
 }

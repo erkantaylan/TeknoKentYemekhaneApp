@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using YemekhaneApp.Application.DTOs.MealRecord;
 using YemekhaneApp.Application.Interfaces;
+using MealRecordEntity = YemekhaneApp.Domain.Entities.MealRecord;
+
 
 namespace YemekhaneApp.Application.CQRS.Queries.MealRecord
 {
@@ -34,9 +36,9 @@ namespace YemekhaneApp.Application.CQRS.Queries.MealRecord
 
             public async Task<ServiceResponse<List<MealRecordDto>>> Handle(GetMealsByDateWithEmployeeQuery request, CancellationToken cancellationToken)
             {
-                var records = await unitOfWork.GetRepository<MealRecord>().GetAllAsync(
+                var records = await unitOfWork.GetRepository<MealRecordEntity>().GetAllAsync(
                     m => m.MealDate == request.Date,
-                    x => x.Employee, // Include Employee details    
+                    x => x.Employee // Include Employee details    
                 );
                     
 

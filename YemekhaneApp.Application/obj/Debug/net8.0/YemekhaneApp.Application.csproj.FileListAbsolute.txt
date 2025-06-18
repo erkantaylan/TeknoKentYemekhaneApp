@@ -1,0 +1,16 @@
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.csproj.AssemblyReference.cache
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.AssemblyInfoInputs.cache
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.AssemblyInfo.cs
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.csproj.CoreCompileInputs.cache
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.sourcelink.json
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\bin\Debug\net8.0\YemekhaneApp.Application.deps.json
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\bin\Debug\net8.0\YemekhaneApp.Application.dll
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\bin\Debug\net8.0\YemekhaneApp.Application.pdb
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\bin\Debug\net8.0\YemekhaneApp.Domain.dll
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\bin\Debug\net8.0\YemekhaneApp.Domain.pdb
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\Yemekhan.3BC6F76B.Up2Date
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.dll
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\refint\YemekhaneApp.Application.dll
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\YemekhaneApp.Application.pdb
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Application\obj\Debug\net8.0\ref\YemekhaneApp.Application.dll
