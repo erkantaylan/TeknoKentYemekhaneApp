@@ -49,5 +49,35 @@ namespace YemekhaneApp.Api.Controllers
             }
             return Ok(result.Value);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateEmployee([FromBody] UpdateEmployeeCommand command)
+        {
+            if (command == null)
+            {
+                return BadRequest("Invalid employee data.");
+            }
+            var result = await _mediator.Send(command);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok(result.Value);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmployee(Guid id)
+        {
+            var command = new DeleteEmployeeCommand()
+            {
+                Id = id
+            };
+            var result = await _mediator.Send(command);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return NoContent(); // 204 No Content
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using OnionArchitectureDemo.Application.Interfaces;
 using OnionArchitectureDemo.Application.Wrappers;
 using System;
 using System.Collections.Generic;
@@ -11,33 +10,32 @@ using YemekhaneApp.Application.DTOs.MealRecord;
 using YemekhaneApp.Application.Interfaces;
 using MealRecordEntity = YemekhaneApp.Domain.Entities.MealRecord;
 
-
 namespace YemekhaneApp.Application.CQRS.Queries.MealRecord
 {
-    public class GetMealsByDateWithEmployeeQuery : IRequest<ServiceResponse<List<MealRecordDto>>>
+    public class GetMealRecordByIdWithEmployeeQuery : IRequest<ServiceResponse<List<MealRecordDto>>>
     {
-        public DateOnly Date { get; set; }
+        public Guid Id { get; set; }
 
-        public GetMealsByDateWithEmployeeQuery(DateOnly date)
+        public GetMealRecordByIdWithEmployeeQuery(Guid id)
         {
-            Date = date;
+            Id = id;
         }
 
-        public class GetMealsByDateWithEmployeeQueryHandler : IRequestHandler<GetMealsByDateWithEmployeeQuery, ServiceResponse<List<MealRecordDto>>>
+        public class GetMealRecordByIdWithEmployeeQueryHandler : IRequestHandler<GetMealRecordByIdWithEmployeeQuery, ServiceResponse<List<MealRecordDto>>>
         {
             private readonly IUnitOfWork unitOfWork;
             private readonly IMapper _mapper;
 
-            public GetMealsByDateWithEmployeeQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+            public GetMealRecordByIdWithEmployeeQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
             {
                 this.unitOfWork = unitOfWork;
                 _mapper = mapper;
             }
 
-            public async Task<ServiceResponse<List<MealRecordDto>>> Handle(GetMealsByDateWithEmployeeQuery request, CancellationToken cancellationToken)
+            public async Task<ServiceResponse<List<MealRecordDto>>> Handle(GetMealRecordByIdWithEmployeeQuery request, CancellationToken cancellationToken)
             {
                 var records = await unitOfWork.GetRepository<MealRecordEntity>().GetAllAsync(
-                    m => m.MealDate == request.Date,
+                    m => m.Id==request.Id,
                     x => x.Employee // Include Employee details    
                 );
                 if(records == null || !records.Any())
@@ -50,5 +48,4 @@ namespace YemekhaneApp.Application.CQRS.Queries.MealRecord
             }
         }
     }
-
 }
