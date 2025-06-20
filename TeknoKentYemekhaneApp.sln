@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36203.30 d17.14
+VisualStudioVersion = 17.14.36203.30
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{A23CA623-2062-4331-92DB-39599870E429}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YemekhaneApp.Api", "Backend\API\YemekhaneApp.Api\YemekhaneApp.Api.csproj", "{A86D2F33-64B6-4D6F-B8DC-472CDAB34FCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireApp.AppHost", "AspireApp\AspireApp.AppHost\AspireApp.AppHost.csproj", "{E16CF40C-F70B-4FAA-B558-A6F0EE2B7643}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{A86D2F33-64B6-4D6F-B8DC-472CDAB34FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A86D2F33-64B6-4D6F-B8DC-472CDAB34FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A86D2F33-64B6-4D6F-B8DC-472CDAB34FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E16CF40C-F70B-4FAA-B558-A6F0EE2B7643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E16CF40C-F70B-4FAA-B558-A6F0EE2B7643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E16CF40C-F70B-4FAA-B558-A6F0EE2B7643}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E16CF40C-F70B-4FAA-B558-A6F0EE2B7643}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

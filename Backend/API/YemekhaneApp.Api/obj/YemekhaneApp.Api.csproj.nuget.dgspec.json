@@ -56,6 +56,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Aspire.Hosting": {
+              "target": "Package",
+              "version": "[9.3.1, )"
+            },
+            "Aspire.Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[9.3.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.6, )"

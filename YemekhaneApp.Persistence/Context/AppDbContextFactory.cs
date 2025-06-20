@@ -8,8 +8,12 @@ namespace YemekhaneApp.Persistence.Context
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            // Gerekirse connection string'i buradan güncelleyin
-            optionsBuilder.UseSqlServer("Server=.;Database=YemekhaneDb;Trusted_Connection=True;TrustServerCertificate=True;");
+
+            // Önce environment variable'dan al, yoksa default kullan
+            var connectionString = "ConnectionStrings__YemekhaneDb";
+
+            optionsBuilder.UseSqlServer(connectionString); // MSSQL için UseSqlServer
+
             return new AppDbContext(optionsBuilder.Options);
         }
     }

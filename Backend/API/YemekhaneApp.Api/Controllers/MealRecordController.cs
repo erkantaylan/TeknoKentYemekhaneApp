@@ -24,7 +24,7 @@ namespace YemekhaneApp.Api.Controllers
             {
                 return NotFound(result.ErrorMessage);
             }
-            return Ok(result);
+            return Ok(result.Value);
         }
         [HttpGet("{date}")]
         public async Task<IActionResult> GetMealRecordByDate(DateOnly date)
@@ -35,7 +35,7 @@ namespace YemekhaneApp.Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(result);
+            return Ok(result.Value);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMealRecordsByIdWithEmployee(Guid id)
@@ -46,7 +46,7 @@ namespace YemekhaneApp.Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(result);
+            return Ok(result.Value);
         }
 
         [HttpGet("employee/{employeeId}")]

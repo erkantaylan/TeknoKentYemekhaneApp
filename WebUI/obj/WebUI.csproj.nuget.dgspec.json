@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[8.0.17, )"
             },
+            "Microsoft.Fast.Components.FluentUI": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
@@ -69,6 +73,14 @@
               "target": "Package",
               "version": "[8.0.17, )",
               "autoReferenced": true
+            },
+            "MudBlazor": {
+              "target": "Package",
+              "version": "[8.8.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [

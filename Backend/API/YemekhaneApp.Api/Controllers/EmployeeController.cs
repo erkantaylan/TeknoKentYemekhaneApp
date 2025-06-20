@@ -22,7 +22,7 @@ namespace YemekhaneApp.Api.Controllers
         {
             var query = new GetAllEmployees();
             var result = await _mediator.Send(query);
-            return Ok(result);
+            return Ok(result.Value);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById(Guid id)
@@ -33,7 +33,7 @@ namespace YemekhaneApp.Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(result);
+            return Ok(result.Value);
         }
         [HttpPost]
         public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeCommand command)

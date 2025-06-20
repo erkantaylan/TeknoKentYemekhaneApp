@@ -1,11 +1,11 @@
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\bin\Debug\net8.0\YemekhaneApp.Domain.deps.json
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\bin\Debug\net8.0\YemekhaneApp.Domain.dll
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\bin\Debug\net8.0\YemekhaneApp.Domain.pdb
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\YemekhaneApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\YemekhaneApp.Domain.AssemblyInfoInputs.cache
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\YemekhaneApp.Domain.AssemblyInfo.cs
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\YemekhaneApp.Domain.csproj.CoreCompileInputs.cache
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\YemekhaneApp.Domain.sourcelink.json
-C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\bin\Debug\net8.0\YemekhaneApp.Domain.deps.json
-C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\bin\Debug\net8.0\YemekhaneApp.Domain.dll
-C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\bin\Debug\net8.0\YemekhaneApp.Domain.pdb
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\YemekhaneApp.Domain.dll
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\refint\YemekhaneApp.Domain.dll
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\YemekhaneApp.Domain\obj\Debug\net8.0\YemekhaneApp.Domain.pdb
