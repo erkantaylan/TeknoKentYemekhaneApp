@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireApp.AppHost", "Aspire
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YemekhaneApp.Frontend", "UI\YemekhaneApp.Frontend\YemekhaneApp.Frontend.csproj", "{F1C1D402-9797-B32C-477D-20693F3C0607}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Çözüm Öğeleri", "Çözüm Öğeleri", "{AC80F682-3D55-C8F8-4895-A4A9EDD49434}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

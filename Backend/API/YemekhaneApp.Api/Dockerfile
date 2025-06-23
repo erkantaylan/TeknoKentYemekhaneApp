@@ -1,30 +1,31 @@
-# Hata ayıklama kapsayıcınızı özelleştirme ve Visual Studio’nun daha hızlı hata ayıklama için görüntülerinizi derlemek üzere bu Dockerfile'ı nasıl kullandığı hakkında bilgi edinmek için https://aka.ms/customizecontainer sayfasına bakın.
-
-# Bu aşama, VS'den hızlı modda çalıştırıldığında kullanılır (Hata ayıklama yapılandırması için varsayılan olarak ayarlıdır)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
-
-# Bu aşama, hizmet projesini oluşturmak için kullanılır
+# .NET SDK image
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+
 WORKDIR /src
-COPY ["Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj", "Backend/API/YemekhaneApp.Api/"]
-RUN dotnet restore "./Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj"
+
+# Proje dosyalarını kopyala
+COPY ./Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj ./Backend/API/YemekhaneApp.Api/
+COPY ./YemekhaneApp.Application/YemekhaneApp.Application.csproj ./YemekhaneApp.Application/
+COPY ./YemekhaneApp.Domain/YemekhaneApp.Domain.csproj ./YemekhaneApp.Domain/
+COPY ./YemekhaneApp.Persistence/YemekhaneApp.Persistence.csproj ./YemekhaneApp.Persistence/
+
+# Bağımlılıkları indir
+RUN dotnet restore ./Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj
+
+# Tüm source'ları kopyala
 COPY . .
-WORKDIR "/src/Backend/API/YemekhaneApp.Api"
-RUN dotnet build "./YemekhaneApp.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Bu aşama, son aşamaya kopyalanacak hizmet projesini yayımlamak için kullanılır
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./YemekhaneApp.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Build et
+WORKDIR /src/Backend/API/YemekhaneApp.Api
+RUN dotnet publish -c Release -o /app/publish
 
-# Bu aşama üretimde veya VS'den normal modda çalıştırıldığında kullanılır (Hata Ayıklama yapılandırması kullanılmazken varsayılan olarak ayarlıdır)
-FROM base AS final
+# Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
+
+EXPOSE 5000
+EXPOSE 5001
+
 ENTRYPOINT ["dotnet", "YemekhaneApp.Api.dll"]

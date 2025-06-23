@@ -7567,6 +7567,8 @@
     "net8.0": [
       "Aspire.Hosting >= 9.3.1",
       "Aspire.Microsoft.Data.SqlClient >= 9.3.1",
+      "MediatR >= 12.5.0",
+      "MediatR.Extensions.Microsoft.DependencyInjection >= 11.1.0",
       "Microsoft.EntityFrameworkCore >= 9.0.6",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.6",
@@ -7639,6 +7641,14 @@
           "Aspire.Microsoft.Data.SqlClient": {
             "target": "Package",
             "version": "[9.3.1, )"
+          },
+          "MediatR": {
+            "target": "Package",
+            "version": "[12.5.0, )"
+          },
+          "MediatR.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[11.1.0, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",

@@ -8,17 +8,16 @@ var db = builder.AddSqlServer("db")
     .AddDatabase("YemekhaneDb");
 
 
-var api = builder.AddProject<Projects.YemekhaneApp_Api>("api")
+// API container'ý
+var api = builder.AddContainer("api", "teknokentyemekhaneapp-api:latest")
     .WithReference(db)
+    .WithEndpoint(8080,targetPort:8080)
     .WaitFor(db);
 
-var ui = builder.AddProject<Projects.YemekhaneApp_Frontend>("webui")
-    .WithReference(api)
-    .WithExternalHttpEndpoints()
-    .WithUrlForEndpoint("https", url => url.DisplayText = "Yemekhane UI")
-    .WithUrlForEndpoint("http", url => url.DisplayText = "Yemekhane UI")
-    .WithHttpHealthCheck("/health")
-    .WaitFor(api);
+// UI container'ý
+var ui = builder.AddContainer("webui", "teknokentyemekhaneapp-frontend:latest")
+    .WithEndpoint(8080, targetPort: 8080)
+    .WaitFor(api); //•	API ve UI gibi container’lar arasýnda Sadece baðýmlýlýk için .WaitFor(api) kullanmak yeterlidir.
 
 
 builder.Build().Run();
