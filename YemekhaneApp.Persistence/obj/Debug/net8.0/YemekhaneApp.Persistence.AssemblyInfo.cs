@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YemekhaneApp.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f07ceddb92b6130934b00398eaa03c4e3df59f80")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8e24b264c3b0f1d2e2dc61d94807ebb5b8fce2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("YemekhaneApp.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YemekhaneApp.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

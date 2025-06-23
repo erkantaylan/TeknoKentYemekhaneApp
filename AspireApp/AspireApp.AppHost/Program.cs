@@ -2,7 +2,6 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var dbPassword = builder.AddParameter("db-password", "Aersqw09?asApYT!?Assfg");
 
 var db = builder.AddSqlServer("db")
     .WithEnvironment("ACCEPT_EULA", "Y")

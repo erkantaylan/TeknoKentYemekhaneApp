@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "G2b5OCJt6kI=",
+  "dgSpecHash": "X7UqBjZ/2tU=",
   "success": true,
   "projectFilePath": "C:\\Users\\alihe\\source\\repos\\TeknoKentYemekhaneApp\\UI\\YemekhaneApp.Frontend\\YemekhaneApp.Frontend.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\alihe\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1-preview.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1-preview.1.nupkg.sha512"
+  ],
   "logs": []
 }

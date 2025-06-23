@@ -143,6 +143,7 @@
 
     private async Task AddEmployeeAsync()
     {
+        newEmployee.IsActive = true; // Default to active
         await EmployeeService.AddEmployeeAsync(newEmployee);
         Employees = await EmployeeService.GetEmployeesAsync();
         showAddModal = false;

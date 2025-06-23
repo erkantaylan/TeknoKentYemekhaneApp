@@ -82,7 +82,17 @@
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Kayıt eklenirken bir hata oluştu: " + ex.Message;
+                // Hata mesajı kontrolü
+                if (ex.Message.Contains("already exists", StringComparison.OrdinalIgnoreCase) ||
+                    ex.Message.Contains("aynı gün", StringComparison.OrdinalIgnoreCase) ||
+                    ex.Message.Contains("duplicate", StringComparison.OrdinalIgnoreCase))
+                {
+                    ErrorMessage = "Bu çalışan için bu tarihte zaten bir yemek kaydı mevcut!";
+                }
+                else
+                {
+                    ErrorMessage = "Kayıt eklenirken bir hata oluştu: " + ex.Message;
+                }
             }
         }
     }

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  apphost:
+    build:
+      context: .
+      dockerfile: AspireApp/AspireApp.AppHost/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - api
+      - ui
+
+  api:
+    build:
+      context: .
+      dockerfile: Backend/API/YemekhaneApp.Api/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+
+  ui:
+    build:
+      context: .
+      dockerfile: UI/YemekhaneApp.Frontend/Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
