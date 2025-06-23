@@ -1,0 +1,87 @@
+﻿@page "/mealrecords/{Id:guid}"  
+@using YemekhaneApp.Frontend.Models.MealRecord  
+@using YemekhaneApp.Frontend.Services  
+@inject MealRecordService MealRecordService  
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+
+
+@code {  
+    [Parameter]  
+    public Guid Id { get; set; }  
+
+    private List<MealRecordWithEmployeeViewModel>? mealRecords;  
+    private int rowIndex = 0;  
+    private DateOnly? mealDate = null;  
+
+    protected override async Task OnParametersSetAsync()  
+    {  
+        await LoadRecordsAsync();
+    }
+
+    private async Task LoadRecordsAsync()
+    {
+        mealRecords = await MealRecordService.GetMealRecordsByDateWithEmployeesAsync(Id);  
+        mealDate = mealRecords?.FirstOrDefault()?.MealDate;  
+        rowIndex = 0;
+    }
+
+    private async Task DeleteMealRecordAsync(Guid mealRecordId)
+    {
+        bool confirmed = await JS.InvokeAsync<bool>("confirm", "Bu kaydı silmek istediğinize emin misiniz?");
+        if (!confirmed)
+            return;
+
+        await MealRecordService.DeleteMealRecordAsync(mealRecordId);
+        NavigationManager.NavigateTo($"/mealrecords"); 
+    }
+}  
+
+<h3>  
+    @(mealDate.HasValue ? mealDate.Value.ToString("dd.MM.yyyy") : "") - Yemek Yiyen Çalışanlar  
+</h3>  
+
+@if (mealRecords is null)  
+{  
+    <div class="alert alert-info">Yükleniyor...</div>  
+}  
+else if (!mealRecords.Any())  
+{  
+    <div class="alert alert-warning">Bu gün için yemek kaydı bulunamadı.</div>  
+}  
+else  
+{  
+    <div class="table-responsive">  
+        <table class="table table-bordered table-striped align-middle">  
+            <thead class="table-dark">  
+                <tr>  
+                    <th>#</th>  
+                    <th>Ad Soyad</th>  
+                    <th>Email</th>  
+                    <th>Telefon</th>  
+                    <th>Aktif mi?</th>  
+                    <th>İşlem</th>
+                </tr>  
+            </thead>  
+            <tbody>  
+                @foreach (var record in mealRecords)  
+                {  
+                    <tr>  
+                        <td>@(++rowIndex)</td>  
+                        <td>@record.Employee.Name @record.Employee.Surname</td>  
+                        <td>@record.Employee.Email</td>  
+                        <td>@record.Employee.PhoneNumber</td>  
+                        <td>  
+                            <input type="checkbox" disabled checked="@record.Employee.IsActive" />  
+                        </td>  
+                        <td>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteMealRecordAsync(record.Id)">
+                                <i class="bi bi-trash"></i> Sil
+                            </button>
+                        </td>
+                    </tr>  
+                }  
+            </tbody>  
+        </table>  
+    </div>  
+}

@@ -15,7 +15,7 @@ namespace YemekhaneApp.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpGet]
+        [HttpGet("get-all")]
         public async Task<IActionResult> GetAllMealRecords()
         {
             var query = new GetAllMealRecordsQuery();
@@ -26,10 +26,10 @@ namespace YemekhaneApp.Api.Controllers
             }
             return Ok(result.Value);
         }
-        [HttpGet("{date}")]
-        public async Task<IActionResult> GetMealRecordByDate(DateOnly date)
+        [HttpGet("by-date/{id}")]
+        public async Task<IActionResult> GetMealRecordByDate(Guid id)
         {
-            var query = new GetMealsByDateWithEmployeeQuery(date);
+            var query = new GetMealsByDateWithEmployeeQuery(id);
             var result = await _mediator.Send(query);
             if (result == null)
             {

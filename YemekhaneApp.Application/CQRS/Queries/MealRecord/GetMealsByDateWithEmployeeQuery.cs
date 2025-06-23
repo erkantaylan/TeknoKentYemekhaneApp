@@ -16,11 +16,11 @@ namespace YemekhaneApp.Application.CQRS.Queries.MealRecord
 {
     public class GetMealsByDateWithEmployeeQuery : IRequest<ServiceResponse<List<MealRecordDto>>>
     {
-        public DateOnly Date { get; set; }
+        public Guid Id { get; set; }
 
-        public GetMealsByDateWithEmployeeQuery(DateOnly date)
+        public GetMealsByDateWithEmployeeQuery(Guid id)
         {
-            Date = date;
+            Id = id;
         }
 
         public class GetMealsByDateWithEmployeeQueryHandler : IRequestHandler<GetMealsByDateWithEmployeeQuery, ServiceResponse<List<MealRecordDto>>>
@@ -36,13 +36,23 @@ namespace YemekhaneApp.Application.CQRS.Queries.MealRecord
 
             public async Task<ServiceResponse<List<MealRecordDto>>> Handle(GetMealsByDateWithEmployeeQuery request, CancellationToken cancellationToken)
             {
-                var records = await unitOfWork.GetRepository<MealRecordEntity>().GetAllAsync(
-                    m => m.MealDate == request.Date,
-                    x => x.Employee // Include Employee details    
-                );
-                if(records == null || !records.Any())
+                // Önce id'ye ait meal record'u bul
+                var mealRecordRepo = unitOfWork.GetRepository<MealRecordEntity>();
+                var targetRecord = await mealRecordRepo.GetByGuidAsync(request.Id);
+
+                if (targetRecord == null)
                     return new ServiceResponse<List<MealRecordDto>>("Kayıt bulunamadı");
 
+                var mealDate = targetRecord.MealDate;
+
+                // Aynı tarihteki tüm meal record'ları, Employee ile birlikte getir
+                var records = await mealRecordRepo.GetAllAsync(
+                    m => m.MealDate == mealDate,
+                    x => x.Employee
+                );
+
+                if (records == null || !records.Any())
+                    return new ServiceResponse<List<MealRecordDto>>("Kayıt bulunamadı");
 
                 var dtoList = _mapper.Map<List<MealRecordDto>>(records);
 

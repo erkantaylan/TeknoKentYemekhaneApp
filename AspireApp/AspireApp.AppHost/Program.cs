@@ -13,12 +13,13 @@ var api = builder.AddProject<Projects.YemekhaneApp_Api>("api")
     .WithReference(db)
     .WaitFor(db);
 
-var ui = builder.AddProject<Projects.WebUI>("webui")
+var ui = builder.AddProject<Projects.YemekhaneApp_Frontend>("webui")
     .WithReference(api)
     .WithExternalHttpEndpoints()
     .WithUrlForEndpoint("https", url => url.DisplayText = "Yemekhane UI")
     .WithUrlForEndpoint("http", url => url.DisplayText = "Yemekhane UI")
     .WithHttpHealthCheck("/health")
     .WaitFor(api);
+
 
 builder.Build().Run();

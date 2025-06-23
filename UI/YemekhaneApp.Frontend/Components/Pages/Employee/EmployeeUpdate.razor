@@ -1,0 +1,68 @@
+﻿@page "/employee/update/{Id:guid}"
+@using YemekhaneApp.Frontend.Models.Employee
+@using YemekhaneApp.Frontend.Services
+@inject EmployeeService EmployeeService
+@inject NavigationManager NavigationManager
+
+<h3>Çalışan Güncelle</h3>
+
+@if (employee is null)
+{
+    <div>Yükleniyor...</div>
+}
+else
+{
+    <EditForm Model="employee" OnValidSubmit="UpdateEmployee">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label class="form-label">Ad</label>
+            <InputText class="form-control" @bind-Value="employee.Name" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Soyad</label>
+            <InputText class="form-control" @bind-Value="employee.Surname" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <InputText class="form-control" @bind-Value="employee.Email" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Telefon</label>
+            <InputText class="form-control" @bind-Value="employee.PhoneNumber" />
+        </div>
+        <div class="form-check mb-3">
+            <InputCheckbox class="form-check-input" @bind-Value="employee.IsActive" id="isActiveCheck" />
+            <label class="form-check-label" for="isActiveCheck">Aktif mi?</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+        <button type="button" class="btn btn-secondary ms-2" @onclick="GoBack">Geri Dön</button>
+    </EditForm>
+    @if (successMessage != null)
+    {
+        <div class="alert alert-success mt-3">@successMessage</div>
+    }
+}
+
+@code {
+    [Parameter] public Guid Id { get; set; }
+    private EmployeeUpdateViewModel? employee;
+    private string? successMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        employee = await EmployeeService.GetEmployeeByIdToUpdateAsync(Id);
+    }
+
+    private async Task UpdateEmployee()
+    {
+        await EmployeeService.UpdateEmployeeAsync(employee!);
+        successMessage = "Çalışan başarıyla güncellendi.";
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/employees");
+    }
+}

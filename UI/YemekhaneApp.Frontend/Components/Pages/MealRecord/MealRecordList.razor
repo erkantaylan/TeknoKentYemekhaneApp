@@ -1,0 +1,71 @@
+﻿@page "/mealrecords"
+@using YemekhaneApp.Frontend.Models.MealRecord
+@using YemekhaneApp.Frontend.Services
+@inject MealRecordService MealRecordService
+@inject NavigationManager NavigationManager
+
+<h3>Yemek Yenen Günler</h3>
+
+@if (uniqueMealDays is null)
+{
+    <div class="alert alert-info">Yükleniyor...</div>
+}
+else if (!uniqueMealDays.Any())
+{
+    <div class="alert alert-warning">Hiç yemek yenen gün bulunamadı.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Tarih</th>
+                    <th>Detay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in uniqueMealDays)
+                {
+                    <tr>
+                        <td>@(++rowIndex)</td>
+                        <td>@record.MealDate.ToString("dd.MM.yyyy")</td>
+                        <td>
+                            <button class="btn btn-info btn-sm" @onclick="() => GoToDetail(record.Id)">
+                                Detay
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private List<MealRecordViewModel>? uniqueMealDays;
+    private int rowIndex = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var mealRecords = await MealRecordService.GetMealRecordsAsync();
+        if (mealRecords == null || !mealRecords.Any())
+        {
+            uniqueMealDays = new List<MealRecordViewModel>();
+            return;
+        }
+
+        // Sadece yemek yenen günleri (IsEaten == true) ve her günü bir kez al
+        uniqueMealDays = mealRecords
+            .GroupBy(x => x.MealDate)
+            .Select(g => g.FirstOrDefault())
+            .OrderByDescending(x => x.MealDate)
+            .ToList();
+    }
+
+    private void GoToDetail(Guid id)
+    {
+        NavigationManager.NavigateTo($"/mealrecords/{id}");
+    }
+}

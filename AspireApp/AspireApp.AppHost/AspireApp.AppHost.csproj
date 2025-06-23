@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Backend\API\YemekhaneApp.Api\YemekhaneApp.Api.csproj" />
-    <ProjectReference Include="..\..\WebUI\WebUI.csproj" />
+    <ProjectReference Include="..\..\UI\YemekhaneApp.Frontend\YemekhaneApp.Frontend.csproj" />
   </ItemGroup>
 
 </Project>

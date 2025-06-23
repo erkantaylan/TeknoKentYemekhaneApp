@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\YemekhaneApp.Frontend.props" />
+</Project>

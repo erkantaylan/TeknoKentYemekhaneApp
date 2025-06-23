@@ -4,7 +4,6 @@ C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\ob
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\AspireApp.AppHost.AssemblyInfo.cs
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\AspireApp.AppHost.csproj.CoreCompileInputs.cache
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\Aspire\references\YemekhaneApp_Api.ProjectMetadata.g.cs
-C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\Aspire\references\WebUI.ProjectMetadata.g.cs
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\Aspire\references\_AppHost.ProjectMetadata.g.cs
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\AspireApp.AppHost.sourcelink.json
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\bin\Debug\net8.0\AspireApp.AppHost.exe
@@ -165,3 +164,4 @@ C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\ob
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\AspireApp.AppHost.pdb
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\AspireApp.AppHost.genruntimeconfig.cache
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\ref\AspireApp.AppHost.dll
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\AspireApp\AspireApp.AppHost\obj\Debug\net8.0\Aspire\references\YemekhaneApp_Frontend.ProjectMetadata.g.cs

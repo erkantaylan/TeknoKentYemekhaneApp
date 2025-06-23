@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "YemekhaneApp.Frontend/1.0.0": {
+        "runtime": {
+          "YemekhaneApp.Frontend.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "YemekhaneApp.Frontend/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

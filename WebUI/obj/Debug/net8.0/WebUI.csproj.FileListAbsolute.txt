@@ -1066,3 +1066,5 @@ C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\WebUI\bin\Debug\net8.0\wwwroot
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\WebUI\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\WebUI\obj\Debug\net8.0\webcil\Newtonsoft.Json.wasm
 C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\WebUI\obj\Debug\net8.0\compressed\9a1nxiaw2c.gz
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\WebUI\obj\Debug\net8.0\WebUI.RazorAssemblyInfo.cache
+C:\Users\alihe\source\repos\TeknoKentYemekhaneApp\WebUI\obj\Debug\net8.0\WebUI.RazorAssemblyInfo.cs

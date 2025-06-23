@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YemekhaneApp.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23000963293d4e0837095a9451170aa9c1dec06f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f07ceddb92b6130934b00398eaa03c4e3df59f80")]
 [assembly: System.Reflection.AssemblyProductAttribute("YemekhaneApp.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YemekhaneApp.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

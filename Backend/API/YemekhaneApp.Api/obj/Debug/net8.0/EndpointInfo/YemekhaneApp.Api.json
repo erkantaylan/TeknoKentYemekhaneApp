@@ -119,69 +119,11 @@
         }
       }
     },
-    "/api/MealRecord": {
+    "/api/MealRecord/get-all": {
       "get": {
         "tags": [
           "MealRecord"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "MealRecord"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateMealRecordCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateMealRecordCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateMealRecordCommand"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "MealRecord"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateMealRecordCommand"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateMealRecordCommand"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateMealRecordCommand"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -189,19 +131,19 @@
         }
       }
     },
-    "/api/MealRecord/{date}": {
+    "/api/MealRecord/by-date/{id}": {
       "get": {
         "tags": [
           "MealRecord"
         ],
         "parameters": [
           {
-            "name": "date",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string",
-              "format": "date"
+              "format": "uuid"
             }
           }
         ],
@@ -272,6 +214,66 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MealRecord": {
+      "post": {
+        "tags": [
+          "MealRecord"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMealRecordCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMealRecordCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMealRecordCommand"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MealRecord"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMealRecordCommand"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMealRecordCommand"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMealRecordCommand"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"

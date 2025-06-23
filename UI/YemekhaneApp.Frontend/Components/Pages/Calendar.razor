@@ -1,0 +1,89 @@
+﻿@page "/"
+@using YemekhaneApp.Frontend.Models.Employee
+@using YemekhaneApp.Frontend.Services
+@inject EmployeeService EmployeeService
+@inject MealRecordService MealRecordService
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Yemek Kaydı Ekle</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="dateInput" class="form-label">Tarih</label>
+                        <input id="dateInput" type="date" class="form-control" @bind="SelectedDate" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="employeeSelect" class="form-label">Çalışan</label>
+                        <select id="employeeSelect" class="form-select" @bind="SelectedEmployeeId" required>
+                            <option value="">Seçiniz</option>
+                            @if (Employees != null)
+                            {
+                                foreach (var employee in Employees)
+                                {
+                                    <option value="@employee.Id.ToString()">@employee.Name @employee.Surname</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success" @onclick="SaveMealRecord" disabled="@(SelectedEmployeeId == Guid.Empty || SelectedDate == null)">
+                            <i class="bi bi-plus-circle"></i> Kaydet
+                        </button>
+                    </div>
+                    @if (!string.IsNullOrEmpty(ErrorMessage))
+                    {
+                        <div class="alert alert-danger mt-3">@ErrorMessage</div>
+                    }
+                    @if (!string.IsNullOrEmpty(SuccessMessage))
+                    {
+                        <div class="alert alert-success mt-3">@SuccessMessage</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<EmployeeViewModel> Employees;
+    private Guid SelectedEmployeeId;
+    private DateTime? SelectedDate;
+    private string? SuccessMessage;
+    private string? ErrorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Employees = await EmployeeService.GetEmployeesAsync();
+    }
+
+    private async Task SaveMealRecord()
+    {
+        SuccessMessage = null;
+        ErrorMessage = null;
+
+        if (SelectedEmployeeId != Guid.Empty && SelectedDate.HasValue)
+        {
+            try
+            {
+                await MealRecordService.AddMealRecordAsync(new MealRecordCreateViewModel
+                {
+                    EmployeeId = SelectedEmployeeId,
+                    MealDate = DateOnly.FromDateTime(SelectedDate.Value),
+                    IsEaten = true
+                });
+
+                SuccessMessage = "Yemek kaydı başarıyla eklendi.";
+                SelectedEmployeeId = Guid.Empty;
+                SelectedDate = null;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = "Kayıt eklenirken bir hata oluştu: " + ex.Message;
+            }
+        }
+    }
+}

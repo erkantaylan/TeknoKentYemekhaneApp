@@ -1,0 +1,71 @@
+﻿@page "/employee-mealrecords/{EmployeeId:guid}"
+@using YemekhaneApp.Frontend.Models.Employee
+@using YemekhaneApp.Frontend.Models.MealRecord
+@using YemekhaneApp.Frontend.Services
+@inject MealRecordService MealRecordService
+@inject EmployeeService EmployeeService
+
+@code {
+    [Parameter]
+    public Guid EmployeeId { get; set; }
+
+    private List<MealRecordViewModel>? mealRecords = new List<MealRecordViewModel>();
+    private int rowIndex = 0;
+    private string employeeFullName = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        mealRecords = await MealRecordService.GetMealRecordsByEmployeeIdAsync(EmployeeId);
+        rowIndex = 0;
+        EmployeeViewModel? employee = await EmployeeService.GetEmployeeByIdAsync(EmployeeId);
+        if (employee != null)
+        {
+            employeeFullName = $"{employee.Name} {employee.Surname}";
+        }
+    }
+    private async Task DeleteMealRecord(Guid mealRecordId)
+    {
+        await MealRecordService.DeleteMealRecordAsync(mealRecordId);
+        mealRecords = await MealRecordService.GetMealRecordsByEmployeeIdAsync(EmployeeId);
+    }
+}
+
+<h3>
+    @(mealRecords is not null && employeeFullName!=string.Empty
+        ? employeeFullName + " - Çalışanın Yemek Kayıtları"
+        : "Çalışan Yemek Kayıtları")
+</h3>
+@if (mealRecords is null)
+{
+    <div>Yükleniyor...</div>
+}
+else if (!mealRecords.Any())
+{
+    <div>Kayıt bulunamadı.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tarih</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in mealRecords)
+            {
+                <tr>
+                    <td>@(++rowIndex)</td>
+                    <td>@record.MealDate.ToString("dd.MM.yyyy")</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteMealRecord(record.Id)">
+                            Sil
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

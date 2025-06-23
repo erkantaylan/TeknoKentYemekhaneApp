@@ -16,7 +16,7 @@ namespace WebUI.Services
 
         public async Task<List<EmployeeViewModel>> GetEmployeesAsync()
         {
-            var response = await _httpClient.GetAsync("https://localhost:7060/api/Employee");
+            var response = await _httpClient.GetAsync("api/Employee");
             var content = await response.Content.ReadAsStringAsync();
             Console.WriteLine($"Status: {response.StatusCode}, Content: {content}");
 
