@@ -11,12 +11,13 @@ var db = builder.AddSqlServer("db")
 // API container'ý
 var api = builder.AddContainer("api", "teknokentyemekhaneapp-api:latest")
     .WithReference(db)
-    .WithEndpoint(8080,targetPort:8080)
+    .WithEndpoint(5000, targetPort: 5000, isExternal:true)
     .WaitFor(db);
 
 // UI container'ý
 var ui = builder.AddContainer("webui", "teknokentyemekhaneapp-frontend:latest")
-    .WithEndpoint(8080, targetPort: 8080)
+    .WithEndpoint(5100, targetPort: 5100, isExternal: true)
+    .WithEnvironment("services__api__http__0", "http://api:5000")
     .WaitFor(api); //•	API ve UI gibi container’lar arasýnda Sadece baðýmlýlýk için .WaitFor(api) kullanmak yeterlidir.
 
 
