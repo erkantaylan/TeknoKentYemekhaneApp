@@ -1,13 +1,18 @@
-using YemekhaneApp.Persistence;
-using YemekhaneApp.Application;
-using Microsoft.EntityFrameworkCore;
-using YemekhaneApp.Persistence.Context;
 using Aspire.Hosting.ApplicationModel; // Gerekli Aspire namespace'i
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.EntityFrameworkCore;
+using YemekhaneApp.Application;
+using YemekhaneApp.Persistence;
+using YemekhaneApp.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 //builder.AddSqlServerClient("db");
+
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo("/root/.aspnet/DataProtection-Keys"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,7 +24,8 @@ builder.Services.AddApplicationRegistration();
 
 // Aspire ile gelen connection string'i kullanmak i�in:
 // var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__YemekhaneDb");
-var connectionString = builder.Configuration.GetConnectionString("YemekhaneDb");
+var connectionString = builder.Configuration.GetConnectionString("YemekhaneDb") 
+        ?? Environment.GetEnvironmentVariable("ConnectionStrings__YemekhaneDb");
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>

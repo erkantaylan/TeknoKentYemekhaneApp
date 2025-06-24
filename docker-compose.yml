@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   api:
     restart: always
@@ -11,8 +9,12 @@ services:
       context: .
       dockerfile: ./Backend/API/YemekhaneApp.Api/Dockerfile
     environment:
-      - CONNECTIONSTRINGS__YEMEKHANEDB
-
+      - CONNECTIONSTRINGS__YEMEKHANEDB=${CONNECTIONSTRINGS__YEMEKHANEDB}
+    volumes:
+      - dataprotection-keys:/root/.aspnet/DataProtection-Keys
+    networks:
+      - app-network
+    
   frontend:
     restart: always
     ports:
@@ -20,20 +22,31 @@ services:
     depends_on:
       - api
     environment:
-      - SERVICES__API__HTTP__0=5110
-      - SERVICES__API__HTTPS__0=5031
+      - ApiUrl=http://api:8080  
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - dataprotection-keys:/root/.aspnet/DataProtection-Keys  
     build:
       context: .
       dockerfile: ./UI/YemekhaneApp.Frontend/Dockerfile
+    networks:
+      - app-network
 
   api-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     restart: always
     environment:
-      - MSSQL_SA_PASSWORD
-      - ACCEPT_EULA
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+      - ACCEPT_EULA=Y
     volumes:
       - volume_api:/var/opt/mssql
+    networks:
+      - app-network
 
 volumes:
   volume_api:
+  dataprotection-keys:
+
+networks:
+  app-network:
+    driver: bridge
