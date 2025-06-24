@@ -14,7 +14,7 @@ var apiBaseUrl = apiHttpsUrl ?? apiHttpUrl;
 
 if (string.IsNullOrEmpty(apiBaseUrl))
 {
-    throw new Exception("API base URL bulunamadý!");
+    throw new Exception("API base URL bulunamadÄ±!");
 }
 
 builder.Services.AddHttpClient<EmployeeService>(client =>

@@ -2,11 +2,38 @@ version: '3.9'
 
 services:
   api:
+    restart: always
+    depends_on:
+      - api-db
+    ports:
+      - '5110:8080'
     build:
       context: .
       dockerfile: ./Backend/API/YemekhaneApp.Api/Dockerfile
+    environment:
+      - CONNECTIONSTRINGS__YEMEKHANEDB
 
   frontend:
+    restart: always
+    ports:
+      - "10000:8080"
+    depends_on:
+      - api
+    environment:
+      - SERVICES__API__HTTP__0=5110
+      - SERVICES__API__HTTPS__0=5031
     build:
       context: .
       dockerfile: ./UI/YemekhaneApp.Frontend/Dockerfile
+
+  api-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      - MSSQL_SA_PASSWORD
+      - ACCEPT_EULA
+    volumes:
+      - volume_api:/var/opt/mssql
+
+volumes:
+  volume_api:
