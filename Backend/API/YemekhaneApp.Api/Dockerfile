@@ -1,31 +1,27 @@
-# .NET SDK image
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-
-WORKDIR /src
-
-# Proje dosyalarını kopyala
-COPY ./Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj ./Backend/API/YemekhaneApp.Api/
-COPY ./YemekhaneApp.Application/YemekhaneApp.Application.csproj ./YemekhaneApp.Application/
-COPY ./YemekhaneApp.Domain/YemekhaneApp.Domain.csproj ./YemekhaneApp.Domain/
-COPY ./YemekhaneApp.Persistence/YemekhaneApp.Persistence.csproj ./YemekhaneApp.Persistence/
-
-# Bağımlılıkları indir
-RUN dotnet restore ./Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj
-
-# Tüm source'ları kopyala
-COPY . .
-
-# Build et
-WORKDIR /src/Backend/API/YemekhaneApp.Api
-RUN dotnet publish -c Release -o /app/publish
-
-# Runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER root
 
 WORKDIR /app
-COPY --from=build /app/publish .
+EXPOSE 8080
+EXPOSE 8081
 
-EXPOSE 5000
-EXPOSE 5001
- 
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj", "Backend/API/YemekhaneApp.Api/"]
+COPY ["YemekhaneApp.Application/YemekhaneApp.Application.csproj", "YemekhaneApp.Application/"]
+COPY ["YemekhaneApp.Domain/YemekhaneApp.Domain.csproj", "YemekhaneApp.Domain/"]
+COPY ["YemekhaneApp.Persistence/YemekhaneApp.Persistence.csproj", "YemekhaneApp.Persistence/"]
+RUN dotnet restore "Backend/API/YemekhaneApp.Api/YemekhaneApp.Api.csproj"
+COPY . .
+WORKDIR "/src/Backend/API/YemekhaneApp.Api"
+RUN dotnet build "./YemekhaneApp.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./YemekhaneApp.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "YemekhaneApp.Api.dll"]

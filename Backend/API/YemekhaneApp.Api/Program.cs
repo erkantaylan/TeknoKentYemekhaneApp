@@ -14,11 +14,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("DefaultConnection")); 
+builder.Services.AddPersistenceServices(builder.Configuration.GetConnectionString("YemekhaneDb")); 
 builder.Services.AddApplicationRegistration();
 
-// Aspire ile gelen connection string'i kullanmak için:
-var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__YemekhaneDb");
+// Aspire ile gelen connection string'i kullanmak iï¿½in:
+// var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__YemekhaneDb");
+var connectionString = builder.Configuration.GetConnectionString("YemekhaneDb");
 
 
 builder.Services.AddDbContext<AppDbContext>(options =>
